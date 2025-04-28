@@ -9,6 +9,12 @@ the tournament will be turned into a Twitch stream or YouTube video on
 
 ## Changelog
 
+### 2025-04-28
+
+- Updated submission guidelines. Submissions will now be happening through
+  [CodeCrafters](https://codecrafters.io). See [the submission guidelines](#submissions)
+  for more information.
+
 ### 2025-03-15
 
 - Added a testing script to the `testing_utils` directory. See
@@ -91,8 +97,35 @@ Submissions will be pitted against each other by a client running the
 The format of the tournament is yet to be decided and will likely depend on the
 number of submissions.
 
-Submissions should be made [here](https://docs.google.com/forms/d/e/1FAIpQLSfhmo_0zxN7IDIEL6ZHZiyDaNJ2Y7_rkdt661DTaCdK2oHpSA/viewform?usp=dialog).
-The submission deadline is **noon UTC on June 8th 2025**.
+Ssubmissions will be happening through [CodeCrafters](https://codecrafters.io).
+they’ve very kindly put together two new challenges on their site to support the
+competition - one for bots running on the Erlang target, and another for bots
+running on JavaScript.
+
+If you’ve not used CodeCrafters before, essentially, it’s an online platform for
+learning intermediate-to-advanced software engineering concepts by recreating popular
+software like SQLite, Redis and Kafka.
+
+When you start a CodeCrafters challenge, you’ll get access to a special Git repo,
+and when you push code to that repo, the CodeCrafters Git server will run tests against
+your submission, allowing you to progress to the next stage of the challenge.
+
+For the purposes of the chess bot tournament, the challenges test your bot against a
+number of boards to ensure you produce valid moves. You can submit your bot by completing
+stage 5 (which just requires you to fill out a markdown file with your entry details), and
+I’ll be given access to your bot once the tournament has ended, so you won’t need to do
+anything else!
+
+You can keep pushing updates up to the deadline, of course, and I’ll test against the
+most recent commit pushed before the competition reaches its end.
+
+Check out the CodeCrafters challenges here:
+
+- [Erlang](https://app.codecrafters.io/courses/gleam-chess-bot/overview)
+- [JavaScript](https://app.codecrafters.io/courses/gleam-chess-bot-js/overview)
+
+If you’re not already signed up to CodeCrafters, you should be! You can get 40%
+off (and support me and the competition!) by clicking [here](https://ihh.dev/codecrafters).
 
 ## How to participate
 
