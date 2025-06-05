@@ -7,6 +7,11 @@ This is a friendly competition to see who can create the best chess bot in the
 the tournament will be turned into a Twitch stream or YouTube video on
 [my channel](https://youtube.com/IsaacHarrisHolt).
 
+## Submission deadline
+
+Chess bots need to be submitted by **12pm UTC on June 8th, 2025**. See
+[the submission guidelines](#submissions) for more information.
+
 ## Changelog
 
 ### 2025-04-28
@@ -86,6 +91,8 @@ Check them out for an awesome way to get better at coding.
 </a>
 
 ## Submissions
+
+Chess bots need to be submitted by **12pm UTC on June 8th, 2025**.
 
 Submissions should be Gleam web servers and may use either the Erlang or JavaScript
 targets. Templates for both are provided in the `erlang_template` and
