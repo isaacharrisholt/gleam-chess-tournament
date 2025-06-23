@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Entry 1",
+    "repo": "https://github.com/user/repo1",
+    "commit": "abc123"
+  },
+  {
+    "name": "Entry 2",
+    "repo": "https://github.com/user/repo2",
+    "commit": "def456"
+  }
+]

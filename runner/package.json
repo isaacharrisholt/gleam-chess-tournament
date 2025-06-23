@@ -1,0 +1,19 @@
+{
+  "name": "runner",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.0.4",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "chess.js": "^1.4.0"
+  }
+}
