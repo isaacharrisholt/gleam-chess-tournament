@@ -36,3 +36,4 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Chess stuff
 entries.json
 repos
+data/results

@@ -1,6 +1,6 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
-import { Chess, type Color } from "chess.js";
+import { Chess, type Color, type Move } from "chess.js";
 import entries from "../data/entries.json" with { type: "json" };
 import { Result } from "./result";
 
@@ -10,6 +10,7 @@ const PORTS: Record<Player, number> = {
 };
 const MOVE_TIMEOUT = 5000;
 const PGN_DIRECTORY = path.join(__dirname, "../data", "silversuite");
+const RESULTS_DIRECTORY = path.join(__dirname, "../data", "results");
 const MAX_ATTEMPTS_PER_TURN = 3;
 const MAX_TIMEOUTS_PER_GAME = 15;
 
@@ -97,6 +98,10 @@ async function listPgnFiles() {
   return files.toSorted().map((file) => path.join(PGN_DIRECTORY, file));
 }
 
+async function getRoundRobinPgns() {
+  return (await listPgnFiles()).slice(0, 31);
+}
+
 type InvalidResponseError = {
   type: "INVALID_RESPONSE";
   message: string;
@@ -170,27 +175,43 @@ async function makeMove(
   return Result.ok({ player, move: null, errors });
 }
 
+type GameOutcome = { durationSeconds: number; moves: Move[] } & (
+  | {
+      type: "DRAW";
+      reason:
+        | "STALEMATE"
+        | "INSUFFICIENT_MATERIAL"
+        | "FIFTY_MOVES"
+        | "THREEFOLD_REPETITION"
+        | "OTHER";
+    }
+  | {
+      type: "WIN";
+      winner: string;
+      reason: "OPPONENT_TIMEOUT" | "CHECKMATE";
+    }
+);
+
+async function saveResult(
+  players: Players,
+  outcome: GameOutcome,
+  pgnPath: string,
+) {
+  const pgnNumber = pgnPath.split(path.sep).pop()?.split("-")[0] as string;
+  await Bun.file(
+    path.join(
+      RESULTS_DIRECTORY,
+      `${players.white}-${players.black}-${pgnNumber}.json`,
+    ),
+  ).write(JSON.stringify(outcome, null, 2));
+}
+
 async function playGame(
   players: Players,
   pgnPath: string,
-): Promise<
-  Result<
-    | {
-        type: "DRAW";
-        reason:
-          | "STALEMATE"
-          | "INSUFFICIENT_MATERIAL"
-          | "FIFTY_MOVES"
-          | "THREEFOLD_REPETITION"
-          | "OTHER";
-      }
-    | {
-        type: "WIN";
-        winner: string;
-        reason: "OPPONENT_TIMEOUT" | "CHECKMATE";
-      }
-  >
-> {
+): Promise<Result<GameOutcome>> {
+  console.log(`Playing game between ${players.white} and ${players.black}...`);
+
   const pgn = await Bun.file(pgnPath).text();
   const chess = new Chess();
   chess.loadPgn(pgn, { strict: false });
@@ -208,6 +229,7 @@ async function playGame(
     black: 0,
   };
 
+  const startTime = performance.now();
   while (!chess.isGameOver()) {
     currentPlayer = colourToPlayer(chess.turn());
     const otherPlayer = currentPlayer === "white" ? "black" : "white";
@@ -230,6 +252,8 @@ async function playGame(
         type: "WIN",
         winner: players[otherPlayer],
         reason: "OPPONENT_TIMEOUT",
+        moves: chess.history({ verbose: true }),
+        durationSeconds: (performance.now() - startTime) / 1000,
       });
     }
 
@@ -241,34 +265,47 @@ async function playGame(
 
   await dockerStopAll(players);
 
+  const moves = chess.history({ verbose: true });
+  const durationSeconds = (performance.now() - startTime) / 1000;
+
   if (chess.isDraw()) {
     if (chess.isStalemate()) {
       return Result.ok({
         type: "DRAW",
         reason: "STALEMATE",
+        moves,
+        durationSeconds,
       });
     }
     if (chess.isInsufficientMaterial()) {
       return Result.ok({
         type: "DRAW",
         reason: "INSUFFICIENT_MATERIAL",
+        moves,
+        durationSeconds,
       });
     }
     if (chess.isDrawByFiftyMoves()) {
       return Result.ok({
         type: "DRAW",
         reason: "FIFTY_MOVES",
+        moves,
+        durationSeconds,
       });
     }
     if (chess.isThreefoldRepetition()) {
       return Result.ok({
         type: "DRAW",
         reason: "THREEFOLD_REPETITION",
+        moves,
+        durationSeconds,
       });
     }
     return Result.ok({
       type: "DRAW",
       reason: "OTHER",
+      moves,
+      durationSeconds,
     });
   }
 
@@ -277,45 +314,99 @@ async function playGame(
       type: "WIN",
       winner: players[currentPlayer],
       reason: "CHECKMATE",
+      moves,
+      durationSeconds,
     });
   }
 
   return Result.error(new Error("unknown game state"));
 }
 
+async function playAndSaveGame(
+  players: Players,
+  pgnPath: string,
+): Promise<Result<GameOutcome>> {
+  const gameResult = await playGame(players, pgnPath);
+  if (!gameResult.ok) {
+    return gameResult;
+  }
+  await saveResult(players, gameResult.data, pgnPath);
+  return Result.ok(gameResult.data);
+}
+
+function printOutcome(players: Players, gameOutcome: GameOutcome) {
+  console.log("\n\n\n");
+  console.log(
+    `Game between ${players.white} as white and ${players.black} as black`,
+  );
+  console.log(`Game outcome: ${gameOutcome.type}`);
+  if (gameOutcome.type === "WIN") {
+    console.log(`Winner: ${gameOutcome.winner}`);
+  }
+  console.log(`Game duration: ${gameOutcome.durationSeconds} seconds`);
+  console.log(`Total moves: ${gameOutcome.moves.length}`);
+  console.log("\n\n\n");
+}
+
+async function playMatch(
+  player1: string,
+  player2: string,
+  pgnPaths: string[],
+): Promise<Result<null>> {
+  // Play all games twice - once with each player as white and once as black
+  // Games must be played sequentially
+
+  for (const pgnPath of pgnPaths) {
+    const game1Players = { white: player1, black: player2 };
+    const game1Result = await playAndSaveGame(game1Players, pgnPath);
+
+    if (!game1Result.ok) {
+      return Result.error(
+        new Error(
+          `Game between ${player1} and ${player2} failed: ${game1Result.error.message}`,
+        ),
+      );
+    }
+    printOutcome(game1Players, game1Result.data);
+
+    const game2Players = { white: player2, black: player1 };
+    const game2Result = await playAndSaveGame(game2Players, pgnPath);
+
+    if (!game2Result.ok) {
+      return Result.error(
+        new Error(
+          `Game between ${player2} and ${player1} failed: ${game2Result.error.message}`,
+        ),
+      );
+    }
+    printOutcome(game2Players, game2Result.data);
+  }
+  return Result.ok(null);
+}
+
 async function main() {
+  try {
+    await fs.rm(RESULTS_DIRECTORY, { recursive: true, force: true });
+  } catch {}
+  await fs.mkdir(RESULTS_DIRECTORY, { recursive: true });
+
   console.log("Downloading repositories and building images...");
   await downloadAndBuild();
 
   console.log("Calculating game pairs...");
-  const _pairs = permutations(entries.map((e) => e.name));
+  const pairs = permutations(entries.map((e) => e.name));
 
   console.log("Fetching starting positions...");
-  const startingPositions = await listPgnFiles();
+  const startingPositions = await getRoundRobinPgns();
 
-  const [white, black] = ["girlchesser", "girlchesser"];
-  console.log(`Playing game between ${white} and ${black}...`);
-  const gameResult = await playGame(
-    { white, black },
-    startingPositions[0] as string,
-  );
-
-  if (!gameResult.ok) {
-    console.error(
-      `Game between ${white} and ${black} failed: ${gameResult.error.message}`,
-    );
-    process.exit(1);
-  }
-
-  const outcome = gameResult.data;
-  if (outcome.type === "WIN") {
-    console.log(
-      `Game between ${white} and ${black} won by ${outcome.winner} for reason ${outcome.reason}`,
-    );
-  } else if (outcome.type === "DRAW") {
-    console.log(
-      `Game between ${white} and ${black} ended in a draw for reason ${outcome.reason}`,
-    );
+  for (const [player1, player2] of pairs) {
+    console.log(`\n\n\nSTARTING MATCH BETWEEN ${player1} AND ${player2}\n\n\n`);
+    const matchResult = await playMatch(player1, player2, startingPositions);
+    if (!matchResult.ok) {
+      console.error(matchResult.error.message);
+      process.exit(1);
+    }
+    console.log(`\n\n\nFINISHED MATCH BETWEEN ${player1} AND ${player2}\n\n\n`);
   }
 }
 
