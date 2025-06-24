@@ -3,21 +3,28 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { Chess, type Move as ChessJsMove, type Color } from "chess.js";
 import entries from "../data/entries.json" with { type: "json" };
+import finalsPlayers from "../data/finals-players.json" with { type: "json" };
+import thirdPlacePlayers from "../data/third-place-players.json" with {
+  type: "json",
+};
+import {
+  FINALS_RESULTS_DIRECTORY,
+  MAX_ATTEMPTS_PER_TURN,
+  MAX_TIMEOUTS_PER_GAME,
+  MOVE_TIMEOUT,
+  NUM_FINALS_GAMES,
+  PGN_DIRECTORY,
+  RESULTS_DIRECTORY,
+  ROUND_ROBIN_RESULTS_DIRECTORY,
+  ROUND_ROBIN_STARTING_POSITIONS,
+  THIRD_PLACE_RESULTS_DIRECTORY,
+} from "./config";
 import { Result } from "./result";
 
 const PORTS: Record<string, number> = {};
-const MOVE_TIMEOUT = 5000;
-const PGN_DIRECTORY = path.join(__dirname, "../data", "silversuite");
-const RESULTS_DIRECTORY = path.join(__dirname, "../data", "results");
-const MAX_ATTEMPTS_PER_TURN = 3;
-const MAX_TIMEOUTS_PER_GAME = 15;
 
 type Player = "white" | "black";
 type Players = Record<Player, string>;
-
-interface Move extends ChessJsMove {
-  durationMs: number;
-}
 
 function colourToPlayer(colour: Color): Player {
   return colour === "w" ? "white" : "black";
@@ -41,7 +48,7 @@ async function dockerStart(name: string, player: Player) {
 async function dockerStop(name: string, player: Player) {
   const containerName = dockerContainerName(name, player);
   console.log(`Stopping ${dockerImage(name)} as ${containerName}...`);
-  await Bun.$`docker stop ${containerName}`.quiet();
+  await Bun.$`docker stop ${containerName}`.quiet().nothrow();
   console.log(`Stopped ${dockerImage(name)}`);
 }
 
@@ -101,7 +108,20 @@ async function listPgnFiles() {
 }
 
 async function getRoundRobinPgns() {
-  return (await listPgnFiles()).slice(0, 31);
+  return (await listPgnFiles()).slice(0, ROUND_ROBIN_STARTING_POSITIONS);
+}
+
+async function getThirdPlaceGames() {
+  const files = await listPgnFiles();
+  return files.slice(
+    files.length - 2 * NUM_FINALS_GAMES,
+    files.length - NUM_FINALS_GAMES,
+  );
+}
+
+async function getFinalsGames() {
+  const files = await listPgnFiles();
+  return files.slice(files.length - NUM_FINALS_GAMES);
 }
 
 type InvalidResponseError = {
@@ -110,13 +130,20 @@ type InvalidResponseError = {
   status: number;
 };
 
-type MoveError = { type: "TIMEOUT" } | { type: "INVALID_MOVE"; move: string };
+type MoveError =
+  | { type: "TIMEOUT" }
+  | { type: "INVALID_MOVE"; move: string }
+  | { type: "OUT_OF_MEMORY" };
 
 type MoveResponse = {
   move: Move | null;
   player: Player;
   errors: MoveError[];
 };
+
+interface Move extends ChessJsMove {
+  durationMs: number;
+}
 
 async function makeMove(
   chess: Chess,
@@ -147,8 +174,11 @@ async function makeMove(
     const durationMs = performance.now() - startTime;
 
     if (!responseResult.ok) {
-      console.log(responseResult);
-      errors.push({ type: "TIMEOUT" });
+      if (responseResult.error.name === "DOMException") {
+        errors.push({ type: "TIMEOUT" });
+      } else {
+        errors.push({ type: "OUT_OF_MEMORY" });
+      }
       attempt++;
       continue;
     }
@@ -163,7 +193,7 @@ async function makeMove(
     }
     const move = await response.text();
 
-    const moveResult = Result.try(() => chess.move(move));
+    const moveResult = Result.try(() => chess.move(move, { strict: false }));
     if (!moveResult.ok) {
       errors.push({
         type: "INVALID_MOVE",
@@ -187,7 +217,12 @@ async function makeMove(
   return Result.ok({ player, move: null, errors });
 }
 
-type GameOutcome = { pgn: string; durationMs: number; moves: ChessJsMove[] } & (
+export type GameOutcome = {
+  players: Players;
+  pgn: string;
+  durationMs: number;
+  moves: ChessJsMove[];
+} & (
   | {
       type: "DRAW";
       reason:
@@ -200,25 +235,30 @@ type GameOutcome = { pgn: string; durationMs: number; moves: ChessJsMove[] } & (
   | {
       type: "WIN";
       winner: string;
-      reason:
-        | "OPPONENT_TIMEOUT"
-        | "OPPONENT_EXCEEDED_MAX_ATTEMPTS"
-        | "CHECKMATE";
+      reason: "CHECKMATE";
+    }
+  | {
+      type: "WIN";
+      winner: string;
+      reason: "OPPONENT_TIMEOUT" | "OPPONENT_EXCEEDED_MAX_ATTEMPTS";
+      opponentErrors: MoveError[];
     }
 );
+
+function resultFileName(players: Players, pgnPath: string) {
+  const pgnNumber = pgnPath.split(path.sep).pop()?.split("-")[0] as string;
+  return `${players.white}-${players.black}-${pgnNumber}.json`;
+}
 
 async function saveResult(
   players: Players,
   outcome: GameOutcome,
   pgnPath: string,
+  saveDir: string,
 ) {
-  const pgnNumber = pgnPath.split(path.sep).pop()?.split("-")[0] as string;
-  await Bun.file(
-    path.join(
-      RESULTS_DIRECTORY,
-      `${players.white}-${players.black}-${pgnNumber}.json`,
-    ),
-  ).write(JSON.stringify(outcome, null, 2));
+  await Bun.file(path.join(saveDir, resultFileName(players, pgnPath))).write(
+    JSON.stringify(outcome, null, 2),
+  );
 }
 
 async function gameLoop(
@@ -267,6 +307,8 @@ async function gameLoop(
         pgn: chess.pgn(),
         moves,
         durationMs: performance.now() - startTime,
+        opponentErrors: errors,
+        players,
       });
     }
 
@@ -281,6 +323,8 @@ async function gameLoop(
         reason: "OPPONENT_TIMEOUT",
         moves,
         durationMs: performance.now() - startTime,
+        opponentErrors: errors,
+        players,
       });
     }
 
@@ -302,6 +346,7 @@ async function gameLoop(
         pgn: finalPgn,
         moves,
         durationMs,
+        players,
       });
     }
     if (chess.isInsufficientMaterial()) {
@@ -311,6 +356,7 @@ async function gameLoop(
         pgn: finalPgn,
         moves,
         durationMs,
+        players,
       });
     }
     if (chess.isDrawByFiftyMoves()) {
@@ -320,6 +366,7 @@ async function gameLoop(
         pgn: finalPgn,
         moves,
         durationMs,
+        players,
       });
     }
     if (chess.isThreefoldRepetition()) {
@@ -329,6 +376,7 @@ async function gameLoop(
         pgn: finalPgn,
         moves,
         durationMs,
+        players,
       });
     }
     return Result.ok({
@@ -337,6 +385,7 @@ async function gameLoop(
       pgn: finalPgn,
       moves,
       durationMs,
+      players,
     });
   }
 
@@ -348,6 +397,7 @@ async function gameLoop(
       pgn: finalPgn,
       moves,
       durationMs,
+      players,
     });
   }
 
@@ -357,7 +407,16 @@ async function gameLoop(
 async function playAndSaveGame(
   players: Players,
   pgnPath: string,
+  saveDir: string,
 ): Promise<Result<GameOutcome>> {
+  const fileName = resultFileName(players, pgnPath);
+  const resultsFile = Bun.file(path.join(saveDir, fileName));
+  if (await resultsFile.exists()) {
+    console.log("Skipping existing game", fileName);
+    const existingResults = (await resultsFile.json()) as GameOutcome;
+    return Result.ok(existingResults);
+  }
+
   await dockerStartAll(players);
 
   const gameResult = await gameLoop(players, pgnPath);
@@ -365,7 +424,7 @@ async function playAndSaveGame(
     return gameResult;
   }
 
-  await saveResult(players, gameResult.data, pgnPath);
+  await saveResult(players, gameResult.data, pgnPath, saveDir);
 
   await dockerStopAll(players);
   return Result.ok(gameResult.data);
@@ -389,13 +448,14 @@ async function playMatch(
   player1: string,
   player2: string,
   pgnPaths: string[],
+  saveDir: string,
 ): Promise<Result<null>> {
   // Play all games twice - once with each player as white and once as black
   // Games must be played sequentially
 
   for (const pgnPath of pgnPaths) {
     const game1Players = { white: player1, black: player2 };
-    const game1Result = await playAndSaveGame(game1Players, pgnPath);
+    const game1Result = await playAndSaveGame(game1Players, pgnPath, saveDir);
 
     if (!game1Result.ok) {
       return Result.error(
@@ -407,7 +467,7 @@ async function playMatch(
     printOutcome(game1Players, game1Result.data);
 
     const game2Players = { white: player2, black: player1 };
-    const game2Result = await playAndSaveGame(game2Players, pgnPath);
+    const game2Result = await playAndSaveGame(game2Players, pgnPath, saveDir);
 
     if (!game2Result.ok) {
       return Result.error(
@@ -429,16 +489,7 @@ function setupPorts() {
   }
 }
 
-async function main() {
-  try {
-    await fs.rm(RESULTS_DIRECTORY, { recursive: true, force: true });
-  } catch {}
-  await fs.mkdir(RESULTS_DIRECTORY, { recursive: true });
-
-  console.log("Downloading repositories and building images...");
-  await downloadAndBuild();
-  setupPorts();
-
+async function playRoundRobin() {
   console.log("Calculating game pairs...");
   const pairs = permutations(entries.map((e) => e.name));
   console.log(pairs.length);
@@ -478,6 +529,7 @@ async function main() {
           player1,
           player2,
           startingPositions,
+          ROUND_ROBIN_RESULTS_DIRECTORY,
         );
         if (!matchResult.ok) {
           console.error(matchResult.error.message);
@@ -489,6 +541,62 @@ async function main() {
       }),
     );
   }
+}
+
+async function playThirdPlaceMatch() {
+  const startingPositions = await getThirdPlaceGames();
+  const [player1, player2] = thirdPlacePlayers as [string, string];
+
+  console.log(
+    `\n\n\nSTARTING THIRD PLACE MATCH BETWEEN ${player1} AND ${player2}\n\n\n`,
+  );
+  const matchResult = await playMatch(
+    player1,
+    player2,
+    startingPositions,
+    THIRD_PLACE_RESULTS_DIRECTORY,
+  );
+  if (!matchResult.ok) {
+    console.error(matchResult.error.message);
+    process.exit(1);
+  }
+  console.log(
+    `\n\n\nFINISHED THIRD PLACE MATCH BETWEEN ${player1} AND ${player2}\n\n\n`,
+  );
+}
+
+async function playFinals() {
+  const startingPositions = await getFinalsGames();
+  const [player1, player2] = finalsPlayers as [string, string];
+
+  console.log(
+    `\n\n\nSTARTING FINALS MATCH BETWEEN ${player1} AND ${player2}\n\n\n`,
+  );
+  const matchResult = await playMatch(
+    player1,
+    player2,
+    startingPositions,
+    FINALS_RESULTS_DIRECTORY,
+  );
+  if (!matchResult.ok) {
+    console.error(matchResult.error.message);
+    process.exit(1);
+  }
+  console.log(
+    `\n\n\nFINISHED FINALS MATCH BETWEEN ${player1} AND ${player2}\n\n\n`,
+  );
+}
+
+async function main() {
+  await fs.mkdir(RESULTS_DIRECTORY, { recursive: true });
+
+  console.log("Downloading repositories and building images...");
+  await downloadAndBuild();
+  setupPorts();
+
+  await playRoundRobin();
+  await playThirdPlaceMatch();
+  await playFinals();
 }
 
 await main();

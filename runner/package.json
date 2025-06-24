@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run src/index.ts"
+    "play": "bun run src/game.ts",
+    "crunch": "bun run src/crunch-results.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.4",
