@@ -221,7 +221,7 @@ export type GameOutcome = {
   players: Players;
   pgn: string;
   durationMs: number;
-  moves: ChessJsMove[];
+  moves: (ChessJsMove & { durationMs: number })[];
 } & (
   | {
       type: "DRAW";
