@@ -25,6 +25,7 @@ create table if not exists game (
 create table if not exists move (
   id integer primary key autoincrement,
   game_id integer not null,
+  move_number integer not null,
   colour text not null,
   player text not null,
   from_square text not null,
@@ -108,10 +109,11 @@ returning id
 
   const game = (gameInsert[0] as { id: number }).id;
 
-  for (const move of outcome.moves) {
+  for (const [idx, move] of outcome.moves.entries()) {
     db.query(`
 insert into move (
   game_id,
+  move_number,
   colour,
   player,
   from_square,
@@ -121,6 +123,7 @@ insert into move (
 )
 values (
   $game_id,
+  $move_number,
   $colour,
   $player,
   $from_square,
@@ -130,6 +133,7 @@ values (
 )
     `).run({
       game_id: game,
+      move_number: idx + 1,
       colour: move.color === "w" ? "white" : "black",
       player:
         move.color === "w" ? outcome.players.white : outcome.players.black,
