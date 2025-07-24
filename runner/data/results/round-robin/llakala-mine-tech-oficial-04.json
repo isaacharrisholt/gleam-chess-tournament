@@ -1,0 +1,137 @@
+{
+  "players": {
+    "white": "llakala",
+    "black": "mine-tech-oficial"
+  },
+  "type": "WIN",
+  "winner": "llakala",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Symmetrical English, Hedgehog\"]\n[Result \"*\"]\n[ECO \"A30\"]\n[PlyCount \"18\"]\n\n1. c4 c5 2. Nf3 Nf6 3. g3 b6 4. Bg2 Bb7 5. Nc3 e6 6. O-O Be7 7. d4 cxd4 8. Qxd4 d6 9. Rd1 a6 10. e4 Qc7 11. Bg5 d5 12. exd5 Nh5 13. d6 Bf8 14. dxc7 *",
+  "moves": [
+    {
+      "color": "w",
+      "from": "e2",
+      "to": "e4",
+      "piece": "p",
+      "flags": "b",
+      "san": "e4",
+      "lan": "e2e4",
+      "before": "rn1qk2r/1b2bppp/pp1ppn2/8/2PQ4/2N2NP1/PP2PPBP/R1BR2K1 w kq - 0 10",
+      "after": "rn1qk2r/1b2bppp/pp1ppn2/8/2PQP3/2N2NP1/PP3PBP/R1BR2K1 b kq - 0 10",
+      "durationMs": 412.1189169995487
+    },
+    {
+      "color": "b",
+      "from": "d8",
+      "to": "c7",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qc7",
+      "lan": "d8c7",
+      "before": "rn1qk2r/1b2bppp/pp1ppn2/8/2PQP3/2N2NP1/PP3PBP/R1BR2K1 b kq - 0 10",
+      "after": "rn2k2r/1bq1bppp/pp1ppn2/8/2PQP3/2N2NP1/PP3PBP/R1BR2K1 w kq - 1 11",
+      "durationMs": 4747.276499997824
+    },
+    {
+      "color": "w",
+      "from": "c1",
+      "to": "g5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bg5",
+      "lan": "c1g5",
+      "before": "rn2k2r/1bq1bppp/pp1ppn2/8/2PQP3/2N2NP1/PP3PBP/R1BR2K1 w kq - 1 11",
+      "after": "rn2k2r/1bq1bppp/pp1ppn2/6B1/2PQP3/2N2NP1/PP3PBP/R2R2K1 b kq - 2 11",
+      "durationMs": 462.23108300194144
+    },
+    {
+      "color": "b",
+      "from": "d6",
+      "to": "d5",
+      "piece": "p",
+      "flags": "n",
+      "san": "d5",
+      "lan": "d6d5",
+      "before": "rn2k2r/1bq1bppp/pp1ppn2/6B1/2PQP3/2N2NP1/PP3PBP/R2R2K1 b kq - 2 11",
+      "after": "rn2k2r/1bq1bppp/pp2pn2/3p2B1/2PQP3/2N2NP1/PP3PBP/R2R2K1 w kq - 0 12",
+      "durationMs": 4702.176000002772
+    },
+    {
+      "color": "w",
+      "from": "e4",
+      "to": "d5",
+      "piece": "p",
+      "captured": "p",
+      "flags": "c",
+      "san": "exd5",
+      "lan": "e4d5",
+      "before": "rn2k2r/1bq1bppp/pp2pn2/3p2B1/2PQP3/2N2NP1/PP3PBP/R2R2K1 w kq - 0 12",
+      "after": "rn2k2r/1bq1bppp/pp2pn2/3P2B1/2PQ4/2N2NP1/PP3PBP/R2R2K1 b kq - 0 12",
+      "durationMs": 763.9786250032485
+    },
+    {
+      "color": "b",
+      "from": "f6",
+      "to": "h5",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nh5",
+      "lan": "f6h5",
+      "before": "rn2k2r/1bq1bppp/pp2pn2/3P2B1/2PQ4/2N2NP1/PP3PBP/R2R2K1 b kq - 0 12",
+      "after": "rn2k2r/1bq1bppp/pp2p3/3P2Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 w kq - 1 13",
+      "durationMs": 4703.2341670021415
+    },
+    {
+      "color": "w",
+      "from": "d5",
+      "to": "d6",
+      "piece": "p",
+      "flags": "n",
+      "san": "d6",
+      "lan": "d5d6",
+      "before": "rn2k2r/1bq1bppp/pp2p3/3P2Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 w kq - 1 13",
+      "after": "rn2k2r/1bq1bppp/pp1Pp3/6Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 b kq - 0 13",
+      "durationMs": 457.6495420001447
+    },
+    {
+      "color": "b",
+      "from": "e7",
+      "to": "f8",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bf8",
+      "lan": "e7f8",
+      "before": "rn2k2r/1bq1bppp/pp1Pp3/6Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 b kq - 0 13",
+      "after": "rn2kb1r/1bq2ppp/pp1Pp3/6Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 w kq - 1 14",
+      "durationMs": 4702.653083000332
+    },
+    {
+      "color": "w",
+      "from": "d6",
+      "to": "c7",
+      "piece": "p",
+      "captured": "q",
+      "flags": "c",
+      "san": "dxc7",
+      "lan": "d6c7",
+      "before": "rn2kb1r/1bq2ppp/pp1Pp3/6Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 w kq - 1 14",
+      "after": "rn2kb1r/1bP2ppp/pp2p3/6Bn/2PQ4/2N2NP1/PP3PBP/R2R2K1 b kq - 0 14",
+      "durationMs": 709.6278749965131
+    }
+  ],
+  "durationMs": 35775.524374999106,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "g7g5"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "h7h5"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "h7h5"
+    }
+  ]
+}

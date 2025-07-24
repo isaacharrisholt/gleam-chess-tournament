@@ -52,7 +52,7 @@ async function getAllGameOutcomes() {
 
     const fullPath = path.join(dirent.parentPath, file);
 
-    const openingNumberString = file.match(/-(\d+)\./)?.[0];
+    const openingNumberString = file.match(/-(\d+)\./)?.[1];
     if (!openingNumberString) {
       throw new Error(`Invalid file name: ${file}`);
     }

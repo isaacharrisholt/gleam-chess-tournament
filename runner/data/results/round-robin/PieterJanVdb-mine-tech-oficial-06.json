@@ -1,0 +1,139 @@
+{
+  "players": {
+    "white": "PieterJanVdb",
+    "black": "mine-tech-oficial"
+  },
+  "type": "WIN",
+  "winner": "PieterJanVdb",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Benoni, Modern\"]\n[Result \"*\"]\n[ECO \"A73\"]\n[PlyCount \"12\"]\n\n1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Bg5 Bh6 8. Bxh6 Nxe4 9. Nxe4 Qg5 10. Bxg5 Rg8 11. Nf6+ *",
+  "moves": [
+    {
+      "color": "w",
+      "from": "c1",
+      "to": "g5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bg5",
+      "lan": "c1g5",
+      "before": "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 7",
+      "after": "rnbqkb1r/pp3p1p/3p1np1/2pP2B1/4P3/2N5/PP3PPP/R2QKBNR b KQkq - 1 7",
+      "durationMs": 31.67420799995307
+    },
+    {
+      "color": "b",
+      "from": "f8",
+      "to": "h6",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bh6",
+      "lan": "f8h6",
+      "before": "rnbqkb1r/pp3p1p/3p1np1/2pP2B1/4P3/2N5/PP3PPP/R2QKBNR b KQkq - 1 7",
+      "after": "rnbqk2r/pp3p1p/3p1npb/2pP2B1/4P3/2N5/PP3PPP/R2QKBNR w KQkq - 2 8",
+      "durationMs": 4731.832749999943
+    },
+    {
+      "color": "w",
+      "from": "g5",
+      "to": "h6",
+      "piece": "b",
+      "captured": "b",
+      "flags": "c",
+      "san": "Bxh6",
+      "lan": "g5h6",
+      "before": "rnbqk2r/pp3p1p/3p1npb/2pP2B1/4P3/2N5/PP3PPP/R2QKBNR w KQkq - 2 8",
+      "after": "rnbqk2r/pp3p1p/3p1npB/2pP4/4P3/2N5/PP3PPP/R2QKBNR b KQkq - 0 8",
+      "durationMs": 14.535792000009678
+    },
+    {
+      "color": "b",
+      "from": "f6",
+      "to": "e4",
+      "piece": "n",
+      "captured": "p",
+      "flags": "c",
+      "san": "Nxe4",
+      "lan": "f6e4",
+      "before": "rnbqk2r/pp3p1p/3p1npB/2pP4/4P3/2N5/PP3PPP/R2QKBNR b KQkq - 0 8",
+      "after": "rnbqk2r/pp3p1p/3p2pB/2pP4/4n3/2N5/PP3PPP/R2QKBNR w KQkq - 0 9",
+      "durationMs": 4701.311708000023
+    },
+    {
+      "color": "w",
+      "from": "c3",
+      "to": "e4",
+      "piece": "n",
+      "captured": "n",
+      "flags": "c",
+      "san": "Nxe4",
+      "lan": "c3e4",
+      "before": "rnbqk2r/pp3p1p/3p2pB/2pP4/4n3/2N5/PP3PPP/R2QKBNR w KQkq - 0 9",
+      "after": "rnbqk2r/pp3p1p/3p2pB/2pP4/4N3/8/PP3PPP/R2QKBNR b KQkq - 0 9",
+      "durationMs": 13.164875000016764
+    },
+    {
+      "color": "b",
+      "from": "d8",
+      "to": "g5",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qg5",
+      "lan": "d8g5",
+      "before": "rnbqk2r/pp3p1p/3p2pB/2pP4/4N3/8/PP3PPP/R2QKBNR b KQkq - 0 9",
+      "after": "rnb1k2r/pp3p1p/3p2pB/2pP2q1/4N3/8/PP3PPP/R2QKBNR w KQkq - 1 10",
+      "durationMs": 4702.333500000066
+    },
+    {
+      "color": "w",
+      "from": "h6",
+      "to": "g5",
+      "piece": "b",
+      "captured": "q",
+      "flags": "c",
+      "san": "Bxg5",
+      "lan": "h6g5",
+      "before": "rnb1k2r/pp3p1p/3p2pB/2pP2q1/4N3/8/PP3PPP/R2QKBNR w KQkq - 1 10",
+      "after": "rnb1k2r/pp3p1p/3p2p1/2pP2B1/4N3/8/PP3PPP/R2QKBNR b KQkq - 0 10",
+      "durationMs": 11.25975000008475
+    },
+    {
+      "color": "b",
+      "from": "h8",
+      "to": "g8",
+      "piece": "r",
+      "flags": "n",
+      "san": "Rg8",
+      "lan": "h8g8",
+      "before": "rnb1k2r/pp3p1p/3p2p1/2pP2B1/4N3/8/PP3PPP/R2QKBNR b KQkq - 0 10",
+      "after": "rnb1k1r1/pp3p1p/3p2p1/2pP2B1/4N3/8/PP3PPP/R2QKBNR w KQq - 1 11",
+      "durationMs": 4702.569082999951
+    },
+    {
+      "color": "w",
+      "from": "e4",
+      "to": "f6",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nf6+",
+      "lan": "e4f6",
+      "before": "rnb1k1r1/pp3p1p/3p2p1/2pP2B1/4N3/8/PP3PPP/R2QKBNR w KQq - 1 11",
+      "after": "rnb1k1r1/pp3p1p/3p1Np1/2pP2B1/8/8/PP3PPP/R2QKBNR b KQq - 2 11",
+      "durationMs": 11.865374999935739
+    }
+  ],
+  "durationMs": 32351.620958999963,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "h7h6"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "h7h6"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Rg8f8"
+    }
+  ]
+}

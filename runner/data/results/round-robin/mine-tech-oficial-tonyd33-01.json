@@ -1,0 +1,89 @@
+{
+  "players": {
+    "white": "mine-tech-oficial",
+    "black": "tonyd33"
+  },
+  "type": "WIN",
+  "winner": "tonyd33",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Bird's Opening\"]\n[Result \"*\"]\n[ECO \"A03\"]\n[PlyCount \"15\"]\n\n1. f4 d5 2. Nf3 Nf6 3. b3 g6 4. Bb2 Bg7 5. e3 O-O 6. Be2 c5 7. O-O Nc6 8. Ne5 Bf5 9. h3 Nxe5 10. g4 Nfxg4 *",
+  "moves": [
+    {
+      "color": "b",
+      "from": "c8",
+      "to": "f5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bf5",
+      "lan": "c8f5",
+      "before": "r1bq1rk1/pp2ppbp/2n2np1/2ppN3/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 b - - 3 8",
+      "after": "r2q1rk1/pp2ppbp/2n2np1/2ppNb2/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 w - - 4 9",
+      "durationMs": 4929.480499999598
+    },
+    {
+      "color": "w",
+      "from": "h2",
+      "to": "h3",
+      "piece": "p",
+      "flags": "n",
+      "san": "h3",
+      "lan": "h2h3",
+      "before": "r2q1rk1/pp2ppbp/2n2np1/2ppNb2/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 w - - 4 9",
+      "after": "r2q1rk1/pp2ppbp/2n2np1/2ppNb2/5P2/1P2P2P/PBPPB1P1/RN1Q1RK1 b - - 0 9",
+      "durationMs": 4737.838583000004
+    },
+    {
+      "color": "b",
+      "from": "c6",
+      "to": "e5",
+      "piece": "n",
+      "captured": "n",
+      "flags": "c",
+      "san": "Nxe5",
+      "lan": "c6e5",
+      "before": "r2q1rk1/pp2ppbp/2n2np1/2ppNb2/5P2/1P2P2P/PBPPB1P1/RN1Q1RK1 b - - 0 9",
+      "after": "r2q1rk1/pp2ppbp/5np1/2ppnb2/5P2/1P2P2P/PBPPB1P1/RN1Q1RK1 w - - 0 10",
+      "durationMs": 4910.106625000015
+    },
+    {
+      "color": "w",
+      "from": "g2",
+      "to": "g4",
+      "piece": "p",
+      "flags": "b",
+      "san": "g4",
+      "lan": "g2g4",
+      "before": "r2q1rk1/pp2ppbp/5np1/2ppnb2/5P2/1P2P2P/PBPPB1P1/RN1Q1RK1 w - - 0 10",
+      "after": "r2q1rk1/pp2ppbp/5np1/2ppnb2/5PP1/1P2P2P/PBPPB3/RN1Q1RK1 b - - 0 10",
+      "durationMs": 4703.504792001098
+    },
+    {
+      "color": "b",
+      "from": "f6",
+      "to": "g4",
+      "piece": "n",
+      "captured": "p",
+      "flags": "c",
+      "san": "Nfxg4",
+      "lan": "f6g4",
+      "before": "r2q1rk1/pp2ppbp/5np1/2ppnb2/5PP1/1P2P2P/PBPPB3/RN1Q1RK1 b - - 0 10",
+      "after": "r2q1rk1/pp2ppbp/6p1/2ppnb2/5Pn1/1P2P2P/PBPPB3/RN1Q1RK1 w - - 0 11",
+      "durationMs": 4908.175000000745
+    }
+  ],
+  "durationMs": 38302.63762499951,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kg1f2"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kg1f2"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kg1f2"
+    }
+  ]
+}

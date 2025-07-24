@@ -42,7 +42,8 @@ with stats_by_player as (
 select
 	player,
 	max(duration_ms) as max,
-	min(duration_ms) as min
+	min(duration_ms) as min,
+	avg(duration_ms) as avg
 from stats_by_player
 group by player;
 
@@ -67,3 +68,27 @@ select
 	avg(duration_ms) as avg_duration
 from move
 group by 1, 2 order by 2, 1;
+
+-- Longest game
+select g.*, m.move_number as move_count
+from game as g
+left join (
+	select game_id, max(move_number) as move_number
+	from "move"
+	group by 1
+) as m
+	on g.id = m.game_id
+order by move_number desc
+limit 10;
+
+-- Shortest game
+select g.*, m.move_number as move_count
+from game as g
+left join (
+	select game_id, max(move_number) as move_number
+	from "move"
+	group by 1
+) as m
+	on g.id = m.game_id
+order by move_number asc
+limit 10;

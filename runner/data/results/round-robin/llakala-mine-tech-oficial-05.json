@@ -1,0 +1,284 @@
+{
+  "players": {
+    "white": "llakala",
+    "black": "mine-tech-oficial"
+  },
+  "type": "WIN",
+  "winner": "llakala",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Benko Gambit\"]\n[Result \"*\"]\n[ECO \"A58\"]\n[PlyCount \"12\"]\n\n1. d4 Nf6 2. c4 c5 3. d5 b5 4. cxb5 a6 5. bxa6 g6 6. Nc3 Bxa6 7. Qa4 Ra7 8. Nb5 h5 9. Nxa7 Qc7 10. Bh6 Bxe2 11. Bf4 Rh6 12. Bxc7 Rh7 13. Bxe2 Rh6 14. Qf4 d6 15. Bxb8 Rh7 16. Bb5+ Kd8 17. Nc6+ *",
+  "moves": [
+    {
+      "color": "w",
+      "from": "d1",
+      "to": "a4",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qa4",
+      "lan": "d1a4",
+      "before": "rn1qkb1r/3ppp1p/b4np1/2pP4/8/2N5/PP2PPPP/R1BQKBNR w KQkq - 0 7",
+      "after": "rn1qkb1r/3ppp1p/b4np1/2pP4/Q7/2N5/PP2PPPP/R1B1KBNR b KQkq - 1 7",
+      "durationMs": 231.15991700068116
+    },
+    {
+      "color": "b",
+      "from": "a8",
+      "to": "a7",
+      "piece": "r",
+      "flags": "n",
+      "san": "Ra7",
+      "lan": "a8a7",
+      "before": "rn1qkb1r/3ppp1p/b4np1/2pP4/Q7/2N5/PP2PPPP/R1B1KBNR b KQkq - 1 7",
+      "after": "1n1qkb1r/r2ppp1p/b4np1/2pP4/Q7/2N5/PP2PPPP/R1B1KBNR w KQk - 2 8",
+      "durationMs": 4732.256958000362
+    },
+    {
+      "color": "w",
+      "from": "c3",
+      "to": "b5",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nb5",
+      "lan": "c3b5",
+      "before": "1n1qkb1r/r2ppp1p/b4np1/2pP4/Q7/2N5/PP2PPPP/R1B1KBNR w KQk - 2 8",
+      "after": "1n1qkb1r/r2ppp1p/b4np1/1NpP4/Q7/8/PP2PPPP/R1B1KBNR b KQk - 3 8",
+      "durationMs": 421.2722080014646
+    },
+    {
+      "color": "b",
+      "from": "h7",
+      "to": "h5",
+      "piece": "p",
+      "flags": "b",
+      "san": "h5",
+      "lan": "h7h5",
+      "before": "1n1qkb1r/r2ppp1p/b4np1/1NpP4/Q7/8/PP2PPPP/R1B1KBNR b KQk - 3 8",
+      "after": "1n1qkb1r/r2ppp2/b4np1/1NpP3p/Q7/8/PP2PPPP/R1B1KBNR w KQk - 0 9",
+      "durationMs": 4702.4322910010815
+    },
+    {
+      "color": "w",
+      "from": "b5",
+      "to": "a7",
+      "piece": "n",
+      "captured": "r",
+      "flags": "c",
+      "san": "Nxa7",
+      "lan": "b5a7",
+      "before": "1n1qkb1r/r2ppp2/b4np1/1NpP3p/Q7/8/PP2PPPP/R1B1KBNR w KQk - 0 9",
+      "after": "1n1qkb1r/N2ppp2/b4np1/2pP3p/Q7/8/PP2PPPP/R1B1KBNR b KQk - 0 9",
+      "durationMs": 316.93845900148153
+    },
+    {
+      "color": "b",
+      "from": "d8",
+      "to": "c7",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qc7",
+      "lan": "d8c7",
+      "before": "1n1qkb1r/N2ppp2/b4np1/2pP3p/Q7/8/PP2PPPP/R1B1KBNR b KQk - 0 9",
+      "after": "1n2kb1r/N1qppp2/b4np1/2pP3p/Q7/8/PP2PPPP/R1B1KBNR w KQk - 1 10",
+      "durationMs": 4701.828625001013
+    },
+    {
+      "color": "w",
+      "from": "c1",
+      "to": "h6",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bh6",
+      "lan": "c1h6",
+      "before": "1n2kb1r/N1qppp2/b4np1/2pP3p/Q7/8/PP2PPPP/R1B1KBNR w KQk - 1 10",
+      "after": "1n2kb1r/N1qppp2/b4npB/2pP3p/Q7/8/PP2PPPP/R3KBNR b KQk - 2 10",
+      "durationMs": 372.79325000196695
+    },
+    {
+      "color": "b",
+      "from": "a6",
+      "to": "e2",
+      "piece": "b",
+      "captured": "p",
+      "flags": "c",
+      "san": "Bxe2",
+      "lan": "a6e2",
+      "before": "1n2kb1r/N1qppp2/b4npB/2pP3p/Q7/8/PP2PPPP/R3KBNR b KQk - 2 10",
+      "after": "1n2kb1r/N1qppp2/5npB/2pP3p/Q7/8/PP2bPPP/R3KBNR w KQk - 0 11",
+      "durationMs": 4701.587790999562
+    },
+    {
+      "color": "w",
+      "from": "h6",
+      "to": "f4",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bf4",
+      "lan": "h6f4",
+      "before": "1n2kb1r/N1qppp2/5npB/2pP3p/Q7/8/PP2bPPP/R3KBNR w KQk - 0 11",
+      "after": "1n2kb1r/N1qppp2/5np1/2pP3p/Q4B2/8/PP2bPPP/R3KBNR b KQk - 1 11",
+      "durationMs": 372.0566670000553
+    },
+    {
+      "color": "b",
+      "from": "h8",
+      "to": "h6",
+      "piece": "r",
+      "flags": "n",
+      "san": "Rh6",
+      "lan": "h8h6",
+      "before": "1n2kb1r/N1qppp2/5np1/2pP3p/Q4B2/8/PP2bPPP/R3KBNR b KQk - 1 11",
+      "after": "1n2kb2/N1qppp2/5npr/2pP3p/Q4B2/8/PP2bPPP/R3KBNR w KQ - 2 12",
+      "durationMs": 4703.3672080002725
+    },
+    {
+      "color": "w",
+      "from": "f4",
+      "to": "c7",
+      "piece": "b",
+      "captured": "q",
+      "flags": "c",
+      "san": "Bxc7",
+      "lan": "f4c7",
+      "before": "1n2kb2/N1qppp2/5npr/2pP3p/Q4B2/8/PP2bPPP/R3KBNR w KQ - 2 12",
+      "after": "1n2kb2/N1Bppp2/5npr/2pP3p/Q7/8/PP2bPPP/R3KBNR b KQ - 0 12",
+      "durationMs": 510.8169580027461
+    },
+    {
+      "color": "b",
+      "from": "h6",
+      "to": "h7",
+      "piece": "r",
+      "flags": "n",
+      "san": "Rh7",
+      "lan": "h6h7",
+      "before": "1n2kb2/N1Bppp2/5npr/2pP3p/Q7/8/PP2bPPP/R3KBNR b KQ - 0 12",
+      "after": "1n2kb2/N1Bppp1r/5np1/2pP3p/Q7/8/PP2bPPP/R3KBNR w KQ - 1 13",
+      "durationMs": 4702.518792003393
+    },
+    {
+      "color": "w",
+      "from": "f1",
+      "to": "e2",
+      "piece": "b",
+      "captured": "b",
+      "flags": "c",
+      "san": "Bxe2",
+      "lan": "f1e2",
+      "before": "1n2kb2/N1Bppp1r/5np1/2pP3p/Q7/8/PP2bPPP/R3KBNR w KQ - 1 13",
+      "after": "1n2kb2/N1Bppp1r/5np1/2pP3p/Q7/8/PP2BPPP/R3K1NR b KQ - 0 13",
+      "durationMs": 231.16287500038743
+    },
+    {
+      "color": "b",
+      "from": "h7",
+      "to": "h6",
+      "piece": "r",
+      "flags": "n",
+      "san": "Rh6",
+      "lan": "h7h6",
+      "before": "1n2kb2/N1Bppp1r/5np1/2pP3p/Q7/8/PP2BPPP/R3K1NR b KQ - 0 13",
+      "after": "1n2kb2/N1Bppp2/5npr/2pP3p/Q7/8/PP2BPPP/R3K1NR w KQ - 1 14",
+      "durationMs": 4702.3379580006
+    },
+    {
+      "color": "w",
+      "from": "a4",
+      "to": "f4",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qf4",
+      "lan": "a4f4",
+      "before": "1n2kb2/N1Bppp2/5npr/2pP3p/Q7/8/PP2BPPP/R3K1NR w KQ - 1 14",
+      "after": "1n2kb2/N1Bppp2/5npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR b KQ - 2 14",
+      "durationMs": 325.033041998744
+    },
+    {
+      "color": "b",
+      "from": "d7",
+      "to": "d6",
+      "piece": "p",
+      "flags": "n",
+      "san": "d6",
+      "lan": "d7d6",
+      "before": "1n2kb2/N1Bppp2/5npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR b KQ - 2 14",
+      "after": "1n2kb2/N1B1pp2/3p1npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR w KQ - 0 15",
+      "durationMs": 4701.7846670001745
+    },
+    {
+      "color": "w",
+      "from": "c7",
+      "to": "b8",
+      "piece": "b",
+      "captured": "n",
+      "flags": "c",
+      "san": "Bxb8",
+      "lan": "c7b8",
+      "before": "1n2kb2/N1B1pp2/3p1npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR w KQ - 0 15",
+      "after": "1B2kb2/N3pp2/3p1npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR b KQ - 0 15",
+      "durationMs": 338.06541699916124
+    },
+    {
+      "color": "b",
+      "from": "h6",
+      "to": "h7",
+      "piece": "r",
+      "flags": "n",
+      "san": "Rh7",
+      "lan": "h6h7",
+      "before": "1B2kb2/N3pp2/3p1npr/2pP3p/5Q2/8/PP2BPPP/R3K1NR b KQ - 0 15",
+      "after": "1B2kb2/N3pp1r/3p1np1/2pP3p/5Q2/8/PP2BPPP/R3K1NR w KQ - 1 16",
+      "durationMs": 4702.267124999315
+    },
+    {
+      "color": "w",
+      "from": "e2",
+      "to": "b5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bb5+",
+      "lan": "e2b5",
+      "before": "1B2kb2/N3pp1r/3p1np1/2pP3p/5Q2/8/PP2BPPP/R3K1NR w KQ - 1 16",
+      "after": "1B2kb2/N3pp1r/3p1np1/1BpP3p/5Q2/8/PP3PPP/R3K1NR b KQ - 2 16",
+      "durationMs": 163.50662500038743
+    },
+    {
+      "color": "b",
+      "from": "e8",
+      "to": "d8",
+      "piece": "k",
+      "flags": "n",
+      "san": "Kd8",
+      "lan": "e8d8",
+      "before": "1B2kb2/N3pp1r/3p1np1/1BpP3p/5Q2/8/PP3PPP/R3K1NR b KQ - 2 16",
+      "after": "1B1k1b2/N3pp1r/3p1np1/1BpP3p/5Q2/8/PP3PPP/R3K1NR w KQ - 3 17",
+      "durationMs": 4701.499582998455
+    },
+    {
+      "color": "w",
+      "from": "a7",
+      "to": "c6",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nc6+",
+      "lan": "a7c6",
+      "before": "1B1k1b2/N3pp1r/3p1np1/1BpP3p/5Q2/8/PP3PPP/R3K1NR w KQ - 3 17",
+      "after": "1B1k1b2/4pp1r/2Np1np1/1BpP3p/5Q2/8/PP3PPP/R3K1NR b KQ - 4 17",
+      "durationMs": 174.48441700264812
+    }
+  ],
+  "durationMs": 64628.22695799917,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "Bf8g7"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Rh7h8"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Rh7h8"
+    }
+  ]
+}

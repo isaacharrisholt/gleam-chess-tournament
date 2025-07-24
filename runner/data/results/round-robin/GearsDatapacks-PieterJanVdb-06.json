@@ -1,0 +1,163 @@
+{
+  "players": {
+    "white": "GearsDatapacks",
+    "black": "PieterJanVdb"
+  },
+  "type": "WIN",
+  "winner": "GearsDatapacks",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Benoni, Modern\"]\n[Result \"*\"]\n[ECO \"A73\"]\n[PlyCount \"12\"]\n\n1. d4 Nf6 2. c4 c5 3. d5 e6 4. Nc3 exd5 5. cxd5 d6 6. e4 g6 7. Nf3 Bd7 8. Bg5 Qa5 9. Bxf6 Ba4 10. Qxa4+ Qxa4 11. Nxa4 Bh6 12. Bb5+ *",
+  "moves": [
+    {
+      "color": "w",
+      "from": "g1",
+      "to": "f3",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nf3",
+      "lan": "g1f3",
+      "before": "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N5/PP3PPP/R1BQKBNR w KQkq - 0 7",
+      "after": "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N2N2/PP3PPP/R1BQKB1R b KQkq - 1 7",
+      "durationMs": 4517.271833000705
+    },
+    {
+      "color": "b",
+      "from": "c8",
+      "to": "d7",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bd7",
+      "lan": "c8d7",
+      "before": "rnbqkb1r/pp3p1p/3p1np1/2pP4/4P3/2N2N2/PP3PPP/R1BQKB1R b KQkq - 1 7",
+      "after": "rn1qkb1r/pp1b1p1p/3p1np1/2pP4/4P3/2N2N2/PP3PPP/R1BQKB1R w KQkq - 2 8",
+      "durationMs": 46.31466699950397
+    },
+    {
+      "color": "w",
+      "from": "c1",
+      "to": "g5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bg5",
+      "lan": "c1g5",
+      "before": "rn1qkb1r/pp1b1p1p/3p1np1/2pP4/4P3/2N2N2/PP3PPP/R1BQKB1R w KQkq - 2 8",
+      "after": "rn1qkb1r/pp1b1p1p/3p1np1/2pP2B1/4P3/2N2N2/PP3PPP/R2QKB1R b KQkq - 3 8",
+      "durationMs": 4502.079415999353
+    },
+    {
+      "color": "b",
+      "from": "d8",
+      "to": "a5",
+      "piece": "q",
+      "flags": "n",
+      "san": "Qa5",
+      "lan": "d8a5",
+      "before": "rn1qkb1r/pp1b1p1p/3p1np1/2pP2B1/4P3/2N2N2/PP3PPP/R2QKB1R b KQkq - 3 8",
+      "after": "rn2kb1r/pp1b1p1p/3p1np1/q1pP2B1/4P3/2N2N2/PP3PPP/R2QKB1R w KQkq - 4 9",
+      "durationMs": 10.840041998773813
+    },
+    {
+      "color": "w",
+      "from": "g5",
+      "to": "f6",
+      "piece": "b",
+      "captured": "n",
+      "flags": "c",
+      "san": "Bxf6",
+      "lan": "g5f6",
+      "before": "rn2kb1r/pp1b1p1p/3p1np1/q1pP2B1/4P3/2N2N2/PP3PPP/R2QKB1R w KQkq - 4 9",
+      "after": "rn2kb1r/pp1b1p1p/3p1Bp1/q1pP4/4P3/2N2N2/PP3PPP/R2QKB1R b KQkq - 0 9",
+      "durationMs": 4504.16520900093
+    },
+    {
+      "color": "b",
+      "from": "d7",
+      "to": "a4",
+      "piece": "b",
+      "flags": "n",
+      "san": "Ba4",
+      "lan": "d7a4",
+      "before": "rn2kb1r/pp1b1p1p/3p1Bp1/q1pP4/4P3/2N2N2/PP3PPP/R2QKB1R b KQkq - 0 9",
+      "after": "rn2kb1r/pp3p1p/3p1Bp1/q1pP4/b3P3/2N2N2/PP3PPP/R2QKB1R w KQkq - 1 10",
+      "durationMs": 10.452333001419902
+    },
+    {
+      "color": "w",
+      "from": "d1",
+      "to": "a4",
+      "piece": "q",
+      "captured": "b",
+      "flags": "c",
+      "san": "Qxa4+",
+      "lan": "d1a4",
+      "before": "rn2kb1r/pp3p1p/3p1Bp1/q1pP4/b3P3/2N2N2/PP3PPP/R2QKB1R w KQkq - 1 10",
+      "after": "rn2kb1r/pp3p1p/3p1Bp1/q1pP4/Q3P3/2N2N2/PP3PPP/R3KB1R b KQkq - 0 10",
+      "durationMs": 4501.669917000458
+    },
+    {
+      "color": "b",
+      "from": "a5",
+      "to": "a4",
+      "piece": "q",
+      "captured": "q",
+      "flags": "c",
+      "san": "Qxa4",
+      "lan": "a5a4",
+      "before": "rn2kb1r/pp3p1p/3p1Bp1/q1pP4/Q3P3/2N2N2/PP3PPP/R3KB1R b KQkq - 0 10",
+      "after": "rn2kb1r/pp3p1p/3p1Bp1/2pP4/q3P3/2N2N2/PP3PPP/R3KB1R w KQkq - 0 11",
+      "durationMs": 2.1970419995486736
+    },
+    {
+      "color": "w",
+      "from": "c3",
+      "to": "a4",
+      "piece": "n",
+      "captured": "q",
+      "flags": "c",
+      "san": "Nxa4",
+      "lan": "c3a4",
+      "before": "rn2kb1r/pp3p1p/3p1Bp1/2pP4/q3P3/2N2N2/PP3PPP/R3KB1R w KQkq - 0 11",
+      "after": "rn2kb1r/pp3p1p/3p1Bp1/2pP4/N3P3/5N2/PP3PPP/R3KB1R b KQkq - 0 11",
+      "durationMs": 4500.9864999987185
+    },
+    {
+      "color": "b",
+      "from": "f8",
+      "to": "h6",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bh6",
+      "lan": "f8h6",
+      "before": "rn2kb1r/pp3p1p/3p1Bp1/2pP4/N3P3/5N2/PP3PPP/R3KB1R b KQkq - 0 11",
+      "after": "rn2k2r/pp3p1p/3p1Bpb/2pP4/N3P3/5N2/PP3PPP/R3KB1R w KQkq - 1 12",
+      "durationMs": 6.477082999423146
+    },
+    {
+      "color": "w",
+      "from": "f1",
+      "to": "b5",
+      "piece": "b",
+      "flags": "n",
+      "san": "Bb5+",
+      "lan": "f1b5",
+      "before": "rn2k2r/pp3p1p/3p1Bpb/2pP4/N3P3/5N2/PP3PPP/R3KB1R w KQkq - 1 12",
+      "after": "rn2k2r/pp3p1p/3p1Bpb/1BpP4/N3P3/5N2/PP3PPP/R3K2R b KQkq - 2 12",
+      "durationMs": 4500.911791998893
+    }
+  ],
+  "durationMs": 27121.250040998682,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "O-O"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "O-O"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "O-O"
+    }
+  ]
+}

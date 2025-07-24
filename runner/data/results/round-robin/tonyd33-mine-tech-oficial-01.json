@@ -1,0 +1,150 @@
+{
+  "players": {
+    "white": "tonyd33",
+    "black": "mine-tech-oficial"
+  },
+  "type": "WIN",
+  "winner": "tonyd33",
+  "reason": "OPPONENT_EXCEEDED_MAX_ATTEMPTS",
+  "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"Silver Suite\"]\n[Black \"Bird's Opening\"]\n[Result \"*\"]\n[ECO \"A03\"]\n[PlyCount \"15\"]\n\n1. f4 d5 2. Nf3 Nf6 3. b3 g6 4. Bb2 Bg7 5. e3 O-O 6. Be2 c5 7. O-O Nc6 8. Ne5 h6 9. Nc3 Kh7 10. a4 Kh8 11. Nxc6 Kh7 12. Nxd8 h5 13. Nxf7 *",
+  "moves": [
+    {
+      "color": "b",
+      "from": "h7",
+      "to": "h6",
+      "piece": "p",
+      "flags": "n",
+      "san": "h6",
+      "lan": "h7h6",
+      "before": "r1bq1rk1/pp2ppbp/2n2np1/2ppN3/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 b - - 3 8",
+      "after": "r1bq1rk1/pp2ppb1/2n2npp/2ppN3/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 w - - 0 9",
+      "durationMs": 4733.523499999195
+    },
+    {
+      "color": "w",
+      "from": "b1",
+      "to": "c3",
+      "piece": "n",
+      "flags": "n",
+      "san": "Nc3",
+      "lan": "b1c3",
+      "before": "r1bq1rk1/pp2ppb1/2n2npp/2ppN3/5P2/1P2P3/PBPPB1PP/RN1Q1RK1 w - - 0 9",
+      "after": "r1bq1rk1/pp2ppb1/2n2npp/2ppN3/5P2/1PN1P3/PBPPB1PP/R2Q1RK1 b - - 1 9",
+      "durationMs": 4927.5914999991655
+    },
+    {
+      "color": "b",
+      "from": "g8",
+      "to": "h7",
+      "piece": "k",
+      "flags": "n",
+      "san": "Kh7",
+      "lan": "g8h7",
+      "before": "r1bq1rk1/pp2ppb1/2n2npp/2ppN3/5P2/1PN1P3/PBPPB1PP/R2Q1RK1 b - - 1 9",
+      "after": "r1bq1r2/pp2ppbk/2n2npp/2ppN3/5P2/1PN1P3/PBPPB1PP/R2Q1RK1 w - - 2 10",
+      "durationMs": 4706.658291000873
+    },
+    {
+      "color": "w",
+      "from": "a2",
+      "to": "a4",
+      "piece": "p",
+      "flags": "b",
+      "san": "a4",
+      "lan": "a2a4",
+      "before": "r1bq1r2/pp2ppbk/2n2npp/2ppN3/5P2/1PN1P3/PBPPB1PP/R2Q1RK1 w - - 2 10",
+      "after": "r1bq1r2/pp2ppbk/2n2npp/2ppN3/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 10",
+      "durationMs": 4909.521750001237
+    },
+    {
+      "color": "b",
+      "from": "h7",
+      "to": "h8",
+      "piece": "k",
+      "flags": "n",
+      "san": "Kh8",
+      "lan": "h7h8",
+      "before": "r1bq1r2/pp2ppbk/2n2npp/2ppN3/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 10",
+      "after": "r1bq1r1k/pp2ppb1/2n2npp/2ppN3/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 1 11",
+      "durationMs": 4707.056667000055
+    },
+    {
+      "color": "w",
+      "from": "e5",
+      "to": "c6",
+      "piece": "n",
+      "captured": "n",
+      "flags": "c",
+      "san": "Nxc6",
+      "lan": "e5c6",
+      "before": "r1bq1r1k/pp2ppb1/2n2npp/2ppN3/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 1 11",
+      "after": "r1bq1r1k/pp2ppb1/2N2npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 11",
+      "durationMs": 4906.811791999266
+    },
+    {
+      "color": "b",
+      "from": "h8",
+      "to": "h7",
+      "piece": "k",
+      "flags": "n",
+      "san": "Kh7",
+      "lan": "h8h7",
+      "before": "r1bq1r1k/pp2ppb1/2N2npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 11",
+      "after": "r1bq1r2/pp2ppbk/2N2npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 1 12",
+      "durationMs": 4703.073208000511
+    },
+    {
+      "color": "w",
+      "from": "c6",
+      "to": "d8",
+      "piece": "n",
+      "captured": "q",
+      "flags": "c",
+      "san": "Nxd8",
+      "lan": "c6d8",
+      "before": "r1bq1r2/pp2ppbk/2N2npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 1 12",
+      "after": "r1bN1r2/pp2ppbk/5npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 12",
+      "durationMs": 4910.201666999608
+    },
+    {
+      "color": "b",
+      "from": "h6",
+      "to": "h5",
+      "piece": "p",
+      "flags": "n",
+      "san": "h5",
+      "lan": "h6h5",
+      "before": "r1bN1r2/pp2ppbk/5npp/2pp4/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 12",
+      "after": "r1bN1r2/pp2ppbk/5np1/2pp3p/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 0 13",
+      "durationMs": 4702.986332999542
+    },
+    {
+      "color": "w",
+      "from": "d8",
+      "to": "f7",
+      "piece": "n",
+      "captured": "p",
+      "flags": "c",
+      "san": "Nxf7",
+      "lan": "d8f7",
+      "before": "r1bN1r2/pp2ppbk/5np1/2pp3p/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 w - - 0 13",
+      "after": "r1b2r2/pp2pNbk/5np1/2pp3p/P4P2/1PN1P3/1BPPB1PP/R2Q1RK1 b - - 0 13",
+      "durationMs": 4909.293915998191
+    }
+  ],
+  "durationMs": 62230.63212499954,
+  "opponentErrors": [
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kh7h8"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kh7h6"
+    },
+    {
+      "type": "INVALID_MOVE",
+      "move": "Kh7h8"
+    }
+  ]
+}
